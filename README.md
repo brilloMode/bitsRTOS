@@ -1,4 +1,4 @@
-# bitsRTOS - very much a work in progress and use at own risk!
+# bitsRTOS
 
 Ultra-compact RTOS for 32/64-bit embedded systems (<16KB footprint).
 Inspired by Nucleus RTOS: POSIX pthreads, SMP/AMP, MPU protection, ELF dynamic loading.
@@ -23,7 +23,8 @@ make TARGET=nrf91640dk && make -j
 
 ## Test it (e.g., QEMU SMP demo)
 
-Install riscv64 toolchain if needed: sudo apt install gcc-riscv64-unknown-elf qemu-system-riscv64
+Install riscv64 toolchain if needed: 
+sudo apt install gcc-riscv64-unknown-elf qemu-system-riscv64
 make TARGET=qemu_riscv64 -j12
 qemu-system-riscv64 -M virt -cpu rv64 -smp 4 -kernel build/bitsRTOS.elf -nographic
 
