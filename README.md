@@ -24,17 +24,17 @@ make TARGET=nrf91640dk && make -j
 ## Test it (e.g., QEMU SMP demo)
 
 Install riscv64 toolchain if needed: 
-sudo apt install gcc-riscv64-unknown-elf qemu-system-riscv64
-make TARGET=qemu_riscv64 -j12
-qemu-system-riscv64 -M virt -cpu rv64 -smp 4 -kernel build/bitsRTOS.elf -nographic
+- sudo apt install gcc-riscv64-unknown-elf qemu-system-riscv64
+- make TARGET=qemu_riscv64 -j12
+- qemu-system-riscv64 -M virt -cpu rv64 -smp 4 -kernel build/bitsRTOS.elf -nographic
 
 Expected output:
 
-bitsRTOS v0.7-smp
-Copyright (c) 2025 brilloMode - MIT License
-SMP: 4 cores online
-Core 0: SMP demo running
-Core 1: SMP demo running
-...
+- bitsRTOS v0.7-smp
+- Copyright (c) 2025 brilloMode - MIT License
+- SMP: 4 cores online
+- Core 0: SMP demo running
+- Core 1: SMP demo running
+- ...
 
 MIT License. Author: brilloMode.
