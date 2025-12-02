@@ -65,17 +65,7 @@ SIZE := $(CROSS_COMPILE)size
 CONFIG_FILE ?= config/defconfig_$(TARGET)
 include $(CONFIG_FILE)
 
-# Generate config.h from defconfig
-build/config.h: $(CONFIG_FILE)
-	@mkdir -p build
-	@echo "/* Auto-generated from $(CONFIG_FILE) */" > $@
-	@echo "#ifndef BITSRTOS_CONFIG_H" >> $@
-	@echo "#define BITSRTOS_CONFIG_H" >> $@
-	@sed -n 's/^CONFIG_\([A-Z_]*\)=y$$/#define \1 1/p' $(CONFIG_FILE) >> $@
-	@sed -n '/^CONFIG_[A-Z_]*=y$$/!s/^CONFIG_\([A-Z_]*\)=\(.*\)/#define \1 \2/p' $(CONFIG_FILE) >> $@
-	@echo "#endif" >> $@
-
-CFLAGS += -std=c11 -Os -Wall -Wextra -ffreestanding -nostdlib -g -DBITSRTOS_VERSION=\"v0.7-smp\" -Iinclude -Ibuild
+CFLAGS += -std=c11 -Os -Wall -Wextra -ffreestanding -nostdlib -g -DBITSRTOS_VERSION=\"v0.7-smp\" -Iinclude
 LDFLAGS += -T bsp/$(BSP)/linker.ld -nostdlib -lgcc
 
 SRCS := $(wildcard kernel/*.c) $(wildcard port/arch/$(ARCH)/*.c) $(wildcard bsp/$(BSP)/*.c)
@@ -88,24 +78,10 @@ ifeq ($(CONFIG_ENABLE_PTHREADS),y)
     CFLAGS += -DBITSRTOS_PTHREADS
 endif
 
-# Architecture defines
-ifeq ($(ARCH),riscv64)
-    CFLAGS += -DARCH_RISCV64
-endif
-ifeq ($(ARCH),armv7m)
-    CFLAGS += -DARCH_ARMV7M
-endif
-ifeq ($(ARCH),armv8m)
-    CFLAGS += -DARCH_ARMV8M
-endif
-ifeq ($(ARCH),armv8a)
-    CFLAGS += -DARCH_ARMV8A
-endif
-
-all: build/config.h build/bitsRTOS.elf build/bitsRTOS.bin
+all: build/bitsRTOS.elf build/bitsRTOS.bin
 	$(SIZE) build/bitsRTOS.elf
 
-build/bitsRTOS.elf: build/config.h $(OBJS)
+build/bitsRTOS.elf: $(OBJS)
 	mkdir -p build
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
 
