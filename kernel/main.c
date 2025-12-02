@@ -1,5 +1,5 @@
 #include <bitsrt/rtx.h>
-#include <stdio.h>  // Provided by BSP
+#include <stdio.h>
 
 void idle_task(void *arg) {
     while (1) {

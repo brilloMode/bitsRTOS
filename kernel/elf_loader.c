@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 // Tiny ELF loader stub - loads "module" from memory
 void *rtx_module_load(const char *path) {
     printf("[ELF] Loading %s... OK\n", path);

@@ -1,7 +1,10 @@
 #include <bitsrt/pthread.h>
+#include <bitsrt/rtx.h>
 
 int pthread_create(pthread_t *thread, const void *attr, void *(*start_routine)(void*), void *arg) {
-    *thread = *rtx_task_create("pthread", (void (*)(void*))start_routine, arg, 1, 512);
+    rtx_task_t *task = rtx_task_create("pthread", (void (*)(void*))start_routine, arg, 1, 512);
+    if (!task) return -1;
+    *thread = *task;
     return 0;
 }
 

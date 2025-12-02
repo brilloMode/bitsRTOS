@@ -1,6 +1,8 @@
 #ifndef BITSRTOS_SEM_H
 #define BITSRTOS_SEM_H
 
+#include <stdint.h>
+
 typedef struct rtx_sem {
     int count;
 } rtx_sem_t;

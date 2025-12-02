@@ -1,8 +1,9 @@
 #include <bitsrt/rtx.h>
+#include <stdio.h>
 
 void bsp_init(void) {
     // UART setup stub for QEMU
-    printf = (void (*)(const char*, ...))0x10000000;  // QEMU semihost stub
+    // Note: printf should be implemented by BSP for QEMU semihost @ 0x10000000
     rtx_smp_init();
     rtx_mpu_init();
 }

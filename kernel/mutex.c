@@ -1,4 +1,7 @@
 #include <bitsrt/mutex.h>
+#include <bitsrt/rtx.h>
+
+extern rtx_task_t *current_task;
 
 rtx_mutex_t *rtx_mutex_init(rtx_mutex_t *mutex) {
     mutex->owner = NULL;

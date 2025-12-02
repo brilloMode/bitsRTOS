@@ -1,6 +1,7 @@
 #include <bitsrt/rtx.h>
+#include <stdio.h>
 
-static rtx_task_t *current_task;
+rtx_task_t *current_task;
 
 void rtx_yield(void) {
     // Context switch stub

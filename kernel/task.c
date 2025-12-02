@@ -1,4 +1,5 @@
 #include <bitsrt/rtx.h>
+#include <stdio.h>
 
 rtx_task_t *rtx_task_create(const char *name, void (*entry)(void*), void *arg, uint8_t prio, uint32_t stack_size) {
     static rtx_task_t tasks[CONFIG_MAX_TASKS];

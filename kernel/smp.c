@@ -1,4 +1,5 @@
 #include <bitsrt/smp.h>
+#include <stdio.h>
 
 uint32_t rtx_smp_num_cores(void) {
 #ifdef BITSRTOS_SMP
